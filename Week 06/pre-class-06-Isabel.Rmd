@@ -1,0 +1,66 @@
+# pre-class
+
+
+Make sure you commit this often with meaningful messages. 
+
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+1. Read the source code for each of the following three functions, puzzle out what they do, and then brainstorm better names.
+
+```{r}
+#Takes a string and a prefix and check to see if the prefix is part of the string. If yes, then True, if no, False for each character in the string. 
+Check_for_prefix <- function(string, prefix) {
+  substr(string, 1, nchar(prefix)) == prefix
+}
+
+check_for_prefix(c(1,12,3,4), 12)
+
+```
+
+```{r}
+#Remove the last item
+remove_last <- function(x) {
+  if (length(x) <= 1) return(NULL)
+  x[-length(x)]
+}
+
+remove_last(c(1,2,3,4,5))
+```
+
+```{r}
+#Repeat the pattern of the y vector so that it is the same length as the vector x.
+Repeat_second_until_same_length_as_first <- function(x, y) {
+  rep(y, length.out = length(x))
+}
+
+Repeat_second_until_same_length_as_first(c(1,2,3,4,5), c(2,3,3,4))
+```
+
+2. Compare and contrast rnorm() and MASS::mvrnorm(). How could you make them more consistent?
+```{r}
+#According to R help section, rnorm() is the function for normal distribution where the mean = 0, sd=1. 
+
+
+#MASS::mvrnorm()is simulate from a multivariate normal distribution that produces one or more samples from the specified multivariate normal distribution. It takes n, mu, Sigma. 
+
+
+```
+
+3. Use `lapply()` and an anonymous function to find the coefficient of variation (the standard deviation divided by the mean) for all columns in the mtcars dataset. 
+```{r}
+lapply(mtcars, function(x) sd(x)/mean(x))
+```
+4. Use vapply() to:
+    a. Compute the standard deviation of every column in a numeric data frame.
+    b. Compute the standard deviation of every numeric column in a mixed data frame. (Hint: you’ll need to use vapply() twice.)
+
+```{r}
+vapply(df, sd, numeric(1))
+
+vapply(df(vapply[df,is.numeric, logical(1)]), sd, numeric(1))
+```
